@@ -26,9 +26,12 @@ namespace PirateSoftwareGameJam.Client.ToppingSpread
             _spriteRenderer.sprite = _sprite;
         }
 
+        private Color _color = Color.red;
+
         public IToppingSpreaderLine StartLine(Vector2 worldPosition, int brushWidth, int brushHeight)
         {
-            return new ToppingSpreaderLine(worldPosition, brushWidth, brushHeight, Color.red, _texturePixels, _sprite.rect.width, _sprite.rect.height, WorldToPixelCoordinates, ApplyChanges);
+            _color = _color == Color.red ? Color.green : Color.red;
+            return new ToppingSpreaderLine(worldPosition, brushWidth, brushHeight, _color, _texturePixels, _sprite.rect.width, _sprite.rect.height, WorldToPixelCoordinates, ApplyChanges);
         }
 
         private Vector2Int WorldToPixelCoordinates(Vector2 worldPosition)

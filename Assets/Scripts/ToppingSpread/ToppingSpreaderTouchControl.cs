@@ -16,7 +16,7 @@ namespace PirateSoftwareGameJam.Client.ToppingSpread
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            _toppingSpreaderLine = _toppingSpreader.StartLine(eventData.pointerCurrentRaycast.worldPosition, 5, 5);
+            _toppingSpreaderLine = _toppingSpreader.StartLine(eventData.pointerCurrentRaycast.worldPosition, 5, 20);
         }
 
         public void OnDrag(PointerEventData eventData)
