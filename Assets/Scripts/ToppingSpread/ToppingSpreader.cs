@@ -30,7 +30,7 @@ namespace PirateSoftwareGameJam.Client.ToppingSpread
 
         public IToppingSpreaderLine StartLine(Vector2 worldPosition, int brushWidth, int brushHeight)
         {
-            _color = _color == Color.red ? Color.green : Color.red;
+            _color = _color == Color.red ? Color.green : _color == Color.green ? Color.blue : Color.red;
             return new ToppingSpreaderLine(worldPosition, brushWidth, brushHeight, _color, _texturePixels, _sprite.rect.width, _sprite.rect.height, WorldToPixelCoordinates, ApplyChanges);
         }
 
