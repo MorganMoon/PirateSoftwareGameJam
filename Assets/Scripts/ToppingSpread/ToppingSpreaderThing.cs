@@ -8,6 +8,10 @@ namespace PirateSoftwareGameJam.Client
         public ToppingSpreader toppingSpreader;
         [SerializeField]
         private Transform _lineOriginPoint;
+        [SerializeField]
+        private int _brushWidth;
+        [SerializeField]
+        private int _brushHeight;
 
         private IToppingSpreaderLine _toppingSpreaderLine;
 
@@ -15,7 +19,7 @@ namespace PirateSoftwareGameJam.Client
         {
             if (Input.GetMouseButtonDown(0))
             {
-                _toppingSpreaderLine = toppingSpreader.StartLine((Vector2)_lineOriginPoint.position, 3, 20, transform.parent.rotation.eulerAngles.z);
+                _toppingSpreaderLine = toppingSpreader.StartLine((Vector2)_lineOriginPoint.position, _brushWidth, _brushHeight, transform.parent.rotation.eulerAngles.z);
             }
             
             if (Input.GetMouseButton(0))
