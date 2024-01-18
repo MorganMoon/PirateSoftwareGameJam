@@ -278,7 +278,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 1
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -437,33 +437,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1619433726526781281, guid: 63e52682155352a4aa1a1f5a6804645d, type: 3}
-      propertyPath: m_AngularDrag
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 6817504052765227328, guid: 63e52682155352a4aa1a1f5a6804645d, type: 3}
       propertyPath: m_Name
       value: Knife
       objectReference: {fileID: 0}
-    - target: {fileID: 8515827820529076867, guid: 63e52682155352a4aa1a1f5a6804645d, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.22012791
-      objectReference: {fileID: 0}
-    - target: {fileID: 8515827820529076867, guid: 63e52682155352a4aa1a1f5a6804645d, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.22012791
-      objectReference: {fileID: 0}
-    - target: {fileID: 8515827820529076867, guid: 63e52682155352a4aa1a1f5a6804645d, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.22012791
-      objectReference: {fileID: 0}
+    - target: {fileID: 7900423639649586683, guid: 63e52682155352a4aa1a1f5a6804645d, type: 3}
+      propertyPath: toppingSpreader
+      value: 
+      objectReference: {fileID: 1977248523}
     - target: {fileID: 8515827820529076867, guid: 63e52682155352a4aa1a1f5a6804645d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.31
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8515827820529076867, guid: 63e52682155352a4aa1a1f5a6804645d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8515827820529076867, guid: 63e52682155352a4aa1a1f5a6804645d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -500,35 +488,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2517934112494667260, guid: 63e52682155352a4aa1a1f5a6804645d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1678962924}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63e52682155352a4aa1a1f5a6804645d, type: 3}
---- !u!1 &1678962923 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2517934112494667260, guid: 63e52682155352a4aa1a1f5a6804645d, type: 3}
-  m_PrefabInstance: {fileID: 1678962922}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1678962924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1678962923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dedcb452c3b848d4fa3408e15d72fff8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  toppingSpreader: {fileID: 1977248523}
-  _lineOriginPoint: {fileID: 1678962925}
---- !u!4 &1678962925 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2679903309834262952, guid: 63e52682155352a4aa1a1f5a6804645d, type: 3}
-  m_PrefabInstance: {fileID: 1678962922}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1806233084
 GameObject:
   m_ObjectHideFlags: 0

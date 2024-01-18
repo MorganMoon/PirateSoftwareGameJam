@@ -15,11 +15,18 @@ namespace PirateSoftwareGameJam.Client
         [Range(0f, 100f)]
         private float scale;
 
+        [SerializeField]
+        [Range(0f, 50f)]
+        private float dragScale;
+
+        private float _movementMultiplier;
+
         private void Awake()
         {
             Cursor.lockState = CursorLockMode.Locked;
             _rigidBody = GetComponent<Rigidbody2D>();
             _dragJoint = GetComponentInChildren<FrictionJoint2D>();
+            _movementMultiplier = scale;
         }
 
         private void OnApplicationFocus(bool focus)
@@ -35,11 +42,13 @@ namespace PirateSoftwareGameJam.Client
             {
                 _rigidBody.freezeRotation = false;
                 _dragJoint.enabled = true;
+                _movementMultiplier = dragScale;
             }
             if (Input.GetMouseButtonUp(0))
             {
                 _rigidBody.freezeRotation = true;
                 _dragJoint.enabled = false;
+                _movementMultiplier = scale;
             }
             if (Input.GetMouseButtonDown(1))
             {
@@ -65,7 +74,7 @@ namespace PirateSoftwareGameJam.Client
             if (!_active) { return; }
                 
             Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-            mouseDelta = mouseDelta * scale;
+            mouseDelta = mouseDelta * _movementMultiplier;
             Vector3 delta = new Vector3(mouseDelta.x, mouseDelta.y);
             _rigidBody.MovePosition(transform.position + delta * Time.deltaTime);
         }
