@@ -56,6 +56,7 @@ namespace PirateSoftwareGameJam.Client.ToppingSpread
     public interface IToppingSpreaderLine
     {
         void UpdatePosition(Vector2 worldPosition);
+        void SetRotation(float degrees);
     }
 
     public class ToppingSpreaderLine : IToppingSpreaderLine
@@ -70,6 +71,7 @@ namespace PirateSoftwareGameJam.Client.ToppingSpread
         private readonly Action _applyChanges;
 
         private Vector2Int _previousPixelPos;
+        private float _rotation;
 
         public ToppingSpreaderLine(Vector2 worldPosition, int brushWidth, int brushHeight, Color32 color, Color32[] texturePixels, float maxWidth, float maxHeight, Func<Vector2, Vector2Int> worldToPixelCoordinates, Action applyChanges)
         {
@@ -86,6 +88,11 @@ namespace PirateSoftwareGameJam.Client.ToppingSpread
             ColorPixels(pixelPos);
             applyChanges();
             _previousPixelPos = pixelPos;
+        }
+
+        public void SetRotation(float degrees)
+        {
+            _rotation = degrees;
         }
 
         public void UpdatePosition(Vector2 worldPosition)
@@ -108,21 +115,30 @@ namespace PirateSoftwareGameJam.Client.ToppingSpread
 
         private void ColorPixels(Vector2Int centerPixel)
         {
+            var toCenterMatrix = Matrix4x4.Translate(new Vector2(centerPixel.x * -1, centerPixel.y * -1));
+            var rotationMatrix = Matrix4x4.Rotate(Quaternion.Euler(0, 0, _rotation));
+            var repositionMatrix = Matrix4x4.Translate(new Vector2(centerPixel.x, centerPixel.y));
             for(int x = centerPixel.x - _brushWidth; x <= centerPixel.x + _brushWidth; x++)
             {
-                if(x >= _maxWidth - 1 || x <= 0)
-                {
-                    continue;
-                }
-
                 for(int y = centerPixel.y - _brushHeight; y <= centerPixel.y + _brushHeight; y++)
                 {
-                    if (y >= _maxHeight - 1 || y <= 0)
+                    int newX = x;
+                    int newY = y;
+                    if (_rotation != 0)
+                    {
+                        var centeredPos = toCenterMatrix.MultiplyPoint3x4(new Vector2(x, y));
+                        var rotatedPos = rotationMatrix.MultiplyPoint3x4(centeredPos);
+                        var newPos = repositionMatrix.MultiplyPoint3x4(rotatedPos);
+                        newX = (int)newPos.x;
+                        newY = (int)newPos.y;
+                    }
+
+                    if (newX >= _maxWidth - 1 || newX <= 0 || newY >= _maxHeight - 1 || newY <= 0)
                     {
                         continue;
                     }
 
-                    var index = y * (int)_maxWidth + x;
+                    var index = newY * (int)_maxWidth + newX;
                     _texturePixels[index] = _color;
                 }
             }
