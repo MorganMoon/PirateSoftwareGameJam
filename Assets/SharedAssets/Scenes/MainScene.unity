@@ -523,6 +523,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toppingSpreader: {fileID: 1977248523}
+  _lineOriginPoint: {fileID: 1678962925}
+--- !u!4 &1678962925 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2679903309834262952, guid: 63e52682155352a4aa1a1f5a6804645d, type: 3}
+  m_PrefabInstance: {fileID: 1678962922}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1806233084
 GameObject:
   m_ObjectHideFlags: 0
