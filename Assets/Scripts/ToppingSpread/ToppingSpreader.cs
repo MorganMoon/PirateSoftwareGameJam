@@ -28,10 +28,10 @@ namespace PirateSoftwareGameJam.Client.ToppingSpread
 
         private Color _color = Color.red;
 
-        public IToppingSpreaderLine StartLine(Vector2 worldPosition, int brushWidth, int brushHeight)
+        public IToppingSpreaderLine StartLine(Vector2 worldPosition, int brushWidth, int brushHeight, float startingRotation = 0f)
         {
             _color = _color == Color.red ? Color.green : _color == Color.green ? Color.blue : Color.red;
-            return new ToppingSpreaderLine(worldPosition, brushWidth, brushHeight, _color, _texturePixels, _sprite.rect.width, _sprite.rect.height, WorldToPixelCoordinates, ApplyChanges);
+            return new ToppingSpreaderLine(worldPosition, brushWidth, brushHeight, startingRotation, _color, _texturePixels, _sprite.rect.width, _sprite.rect.height, WorldToPixelCoordinates, ApplyChanges);
         }
 
         private Vector2Int WorldToPixelCoordinates(Vector2 worldPosition)
@@ -73,10 +73,11 @@ namespace PirateSoftwareGameJam.Client.ToppingSpread
         private Vector2Int _previousPixelPos;
         private float _rotation;
 
-        public ToppingSpreaderLine(Vector2 worldPosition, int brushWidth, int brushHeight, Color32 color, Color32[] texturePixels, float maxWidth, float maxHeight, Func<Vector2, Vector2Int> worldToPixelCoordinates, Action applyChanges)
+        public ToppingSpreaderLine(Vector2 worldPosition, int brushWidth, int brushHeight, float startingRotation, Color32 color, Color32[] texturePixels, float maxWidth, float maxHeight, Func<Vector2, Vector2Int> worldToPixelCoordinates, Action applyChanges)
         {
             _brushWidth = brushWidth;
             _brushHeight = brushHeight;
+            _rotation = startingRotation;
             _color = color;
             _texturePixels = texturePixels;
             _maxWidth = maxWidth;
